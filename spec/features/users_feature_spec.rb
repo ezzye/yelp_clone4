@@ -35,4 +35,24 @@ feature "User can sign in and out" do
       expect(page).not_to have_link('Sign up')
     end
   end
+
+  context "Limiting users" do
+    context "User tries to delete a restaurant they did not create" do
+        it "Should raise an error" do
+          signup_and_create
+          click_link('Delete KFC')
+          expect(page).to have_content("You are not the owner of this restaurant.")
+        end
+    end
+
+    context "User tries to edit a restaurant they did not create" do
+      it "Should raise an error" do
+        signup_and_create
+        click_link('Edit KFC')
+        click_button('Update Restaurant')
+        expect(page).to have_content("You are not the owner of this restaurant.")
+      end
+    end
+
+  end
 end
