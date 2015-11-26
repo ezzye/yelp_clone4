@@ -65,5 +65,33 @@ feature "User can sign in and out" do
       end
     end
 
+    context "User can delete a review" do
+      it "Should allow a user to delete a review" do
+        signup_signin
+        create_restaurant
+        review_restaurant
+        click_link('Delete Review')
+        expect(page).not_to have_content("I love chicken")
+        expect(page).to have_content("Review successfully deleted")
+      end
+
+      it "Can only delete owned reviews" do
+        signup_signin
+        create_restaurant
+        review_restaurant
+        click_link('Sign out')
+        click_link('Delete Review')
+        expect(page).to have_content("Delete Review")
+        expect(page).to have_content("Please log in")
+        click_link('Sign up')
+        fill_in('Email', with: 'test1@example.com')
+        fill_in('Password', with: 'testtest')
+        fill_in('Password confirmation', with: 'testtest')
+        click_button('Sign up')
+        click_link('Delete Review')
+        expect(page).to have_content('You cannot delete this review')
+      end
+    end
+
   end
 end
