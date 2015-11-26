@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-def signup_and_create
+def signup_and_create_and_signup_again
   visit('/')
   click_link('Sign up')
   fill_in('Email', with: 'test@example.com')
@@ -17,4 +17,10 @@ def signup_and_create
   fill_in('Password', with: 'testtest')
   fill_in('Password confirmation', with: 'testtest')
   click_button('Sign up')
+end
+
+def review_restaurant
+  click_link('Review KFC')
+  fill_in('Thoughts', with: 'I love chicken')
+  click_button('Leave Review')
 end
