@@ -20,7 +20,7 @@ class RestaurantsController < ApplicationController # ~> NameError: uninitialize
   end
 
   def restaurant_params
-    params.require(:restaurant).permit(:name)
+    params.require(:restaurant).permit(:name, :image)
   end
 
   def show
