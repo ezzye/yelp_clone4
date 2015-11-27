@@ -12,6 +12,7 @@
             <b>Rating on <%= restaurant.name %>: <%= review.rating %> </b><br> <br>
             <%= link_to "Delete Review", restaurant_review_path(restaurant, review), method: :delete %>
           <% end %>
+          <h3>Average rating: <%= restaurant.average_rating.to_i %></h3>
         <% else %>
           No reviews for <%= restaurant.name %> <br> <br>
         <% end %>
