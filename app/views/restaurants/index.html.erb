@@ -10,7 +10,7 @@
           <% restaurant.reviews.each do |review| %>
             Thoughts on <%= restaurant.name %>: <%= review.thoughts %> <br>
             <b>Rating on <%= restaurant.name %>: <%= review.rating %> </b><br> <br>
-            <%= link_to "Delete Review", restaurant_review_path(restaurant, review), method: :delete %>
+            <%= link_to "Delete Review", review_path(review), method: :delete %>
           <% end %>
           <h3>Average rating: <%= star_rating(restaurant.average_rating) %></h3>
         <% else %>
